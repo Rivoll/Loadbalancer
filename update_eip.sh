@@ -1,6 +1,6 @@
 #!/bin/bash
 REGION=`cat instance_region`
-aws ec2 describe-addresses $REGION --filters 'Name=tag:Name,Values=lb' --query Addresses[].NetworkInterfaceId[] > eip
+aws ec2 describe-addresses --region $REGION --filters 'Name=tag:Name,Values=lb' --query Addresses[].NetworkInterfaceId[] > eip
 
 if [[ `cat eip` == "[]"  ]] ;
 then
